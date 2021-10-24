@@ -45,6 +45,8 @@ Output: {
    "Emma":  []
 }
 ```
+	
+## Implementation :	
 
 ```java
 import java.util.*;
@@ -98,12 +100,14 @@ public class App {
 			int max = 0;
 			for(String song : userSongs.get(user)) {
 				String genre = songGenreMap.get(song);
-				int count = genreCount.getOrDefault(genre, 0);
-				genreCount.put(genre, count + 1);
-				max = Math.max(max, count + 1);
+				if(genre != null) {
+					int count = genreCount.getOrDefault(genre, 0);
+					genreCount.put(genre, count + 1);
+					max = Math.max(max, count + 1);
+				}
 			}
-			if(max != 0)
-				output.put(user, new ArrayList<String>());
+
+			output.put(user, new ArrayList<String>());
 			
 			// now lets add the favourite genre of the user to the output
 			for(String genre : genreCount.keySet()) {
